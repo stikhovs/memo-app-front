@@ -1,7 +1,9 @@
+'use server'
+
 import { CardSet } from "@/utils/types";
 
-export async function getCardSets(): Promise<CardSet[]> {
-    return fetch(`${process.env.API_URL}/set-by-user?userId=${1}`, {
+export async function getCardSetsByIds(ids: number[]): Promise<CardSet[]> {
+    return await fetch(`${process.env.API_URL}/sets?userId=${1}&ids=${ids}`, {
         cache: "no-cache"
     })
         .then((response) => {

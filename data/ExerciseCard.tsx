@@ -5,7 +5,8 @@ export type ExerciseCard = {
 
 export const exerciseCards: ExerciseCard[] = [
     { title: "Learn", link: "#" },
+    { title: "Flashcards", link: "#" },
     { title: "Multiple choice", link: "#" },
-    { title: "True/False", link: "#" },
     { title: "Match", link: "#" },
+    // { title: "Vice versa", link: "#" },
   ];

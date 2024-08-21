@@ -43,13 +43,13 @@ export default function Header() {
                 px-3
               " />
                 </Link>
-                <button className="
+                <Link href={'/set/create'} className="
             hidden sm:block border border-sky-600 shadow-md rounded py-1 px-8 text-sky-700 text-xl
             transition ease-in-out delay-50 duration-200
             hover:bg-sky-200  hover:text-sky-800
           ">
                     Create
-                </button>
+                </Link>
                 <div className="sm:grow"></div>
                 {/* <Link href={'/'} className="hidden sm:block rounded-full">
             <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" stroke-width="0.6"
@@ -59,7 +59,7 @@ export default function Header() {
           </Link> */}
 
                 <Link href={'/'}
-                    className="hidden sm:block border-2 border-sky-600 rounded-full size-14 justify-self-end block
+                    className="hidden sm:block border shadow-md border-sky-600 rounded-full size-12 justify-self-end block
             transition ease-in-out delay-50 duration-200
             ">
                     <Image src={'/user-svgrepo-com.svg'} alt="user-profile" width={100} height={100}
