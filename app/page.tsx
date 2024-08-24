@@ -1,4 +1,4 @@
-import ExerciseBlock from '@/components/exercise-block';
+import ExerciseBlockWithModal from '@/components/exercise-block-with-modal';
 import SetBlock from '@/components/set-block';
 import { getCardSetsBasicInfo } from './actions/get-sets-basic-info';
 
@@ -9,7 +9,7 @@ export default async function Home() {
   return (
     <>
       <div className='mb-6'>
-        <ExerciseBlock sets={await sets}/>
+        <ExerciseBlockWithModal sets={await sets}/>
       </div>
       <div>
         <SetBlock sets={await sets}/>

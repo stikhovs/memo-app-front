@@ -5,6 +5,7 @@ import { loadInitialSetInfo } from '@/app/actions/get-set-info-action';
 import { useEffect, useState } from 'react';
 import Image from "next/image";
 import updateSet from "@/app/actions/update-set-action";
+import ExerciseBlock from "@/components/exercise-block";
 
 type Props = {
   params: {
@@ -74,6 +75,7 @@ export default function SetInfoPage({ params }: Props) {
 
   return (
     <>
+      <ExerciseBlock cardSetId={cardSet?.id}/>
       <div className="ml-4 flex justify-between mb-3">
         {isEditEnabled ?
           <input className="text-3xl text-sky-700 self-end" value={titleOfSet} onChange={(e) => setTitleOfSet(e.target.value)} /> :

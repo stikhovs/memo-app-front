@@ -22,7 +22,7 @@ export default function FlashcardsPage() {
     const [activeCard, setActiveCard] = useState<Card>();
     const [activeIndex, setActiveIndex] = useState<number>(0);
     const [isFlipped, setIsFlipped] = useState(false);
-    
+
     const searchParams = useSearchParams();
     const selectedSetsIdsJson = searchParams.get('selectedSets');
     const selectedSetsIds: number[] = selectedSetsIdsJson ? JSON.parse(selectedSetsIdsJson) : [];
@@ -56,7 +56,7 @@ export default function FlashcardsPage() {
             }) */
     }, []);
 
-    useEffect(() => {setActiveCard(cards[activeIndex])}, [cards]);
+    useEffect(() => { setActiveCard(cards[activeIndex]) }, [cards]);
 
     const handleFlip = () => {
         setIsFlipped(!isFlipped);
@@ -119,11 +119,33 @@ export default function FlashcardsPage() {
         };
     }, [activeCard]);
 
+    const shuffle = () => {
+        const shuffledCards = [...cards];
+        shuffledCards.sort(() => Math.random() - 0.5);
+        setCards(shuffledCards);
+    };
+
 
     return (
         <>
             <div className="ml-4 flex justify-between mb-3">
-                <h2 className="text-3xl text-sky-700 self-end">Selected: {selectedTitles.join()}</h2>
+                {
+                    selectedTitles.length > 1 ?
+                        <h2 className="text-3xl text-sky-700 self-end">Selected: {selectedTitles.join()}</h2> :
+                        <h2 className="text-3xl text-sky-700 self-end">{selectedTitles[0]}</h2>
+                }
+                <button onClick={shuffle}
+                    className="
+                        mr-2 
+                        flex justify-center items-center p-1
+                        size-10
+                        rounded 
+                        bg-sky-200 shadow 
+                        transition ease-in-out delay-50 duration-200
+                        hover:bg-sky-300">
+                    <Image src={'/shuffle.svg'} alt="shuffle" width={35} height={35}
+                        className="" />
+                </button>
             </div>
             <div className="flex justify-center items-center">
 
@@ -140,6 +162,7 @@ export default function FlashcardsPage() {
                     </div>
                 </div>
             </div>
+            <p>{activeIndex + 1}/{cards.length}</p>
             <button
                 className="mt-6 px-4 py-2 bg-indigo-500 text-white rounded hover:bg-indigo-600 transition"
                 onClick={handleFlip}

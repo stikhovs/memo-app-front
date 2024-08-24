@@ -1,18 +1,21 @@
-import { exerciseCards } from "@/data/ExerciseCard";
-import Link from "next/link";
+'use client'
 
-interface Props {
-    cardSetId: number
-}
+import React, { useState } from "react";
+import Link from 'next/link';
+import { exerciseCards } from '@/data/ExerciseCard';
+import { CardSetBasicInfo } from "@/utils/types";
+import ExerciseModalBlock from "./exercise-modal-block";
 
-export default function ExerciseBlock({cardSetId}: Props) {
 
+export default function ExerciseBlockWithModal({ sets }: { sets: CardSetBasicInfo[] }) {
 
+    const [showExerciseModal, setShowExerciseModal] = useState<boolean>(false);
+    const [chosenExersiceTitle, setChosenExerciseTitle] = useState<string>();
 
     return (
         <>
             <h3 className='border-l-8 border-sky-600 rounded-r-lg text-xl md:text-2xl text-sky-700 bg-white p-1 mb-3'>
-                Exercises (TODO with tabs)
+                Exercises
             </h3>
 
             <ul className='grid grid-cols-2 gap-2 sm:grid-cols-4 sm:gap-4 xl:gap-10'>
@@ -20,22 +23,22 @@ export default function ExerciseBlock({cardSetId}: Props) {
                     return <li
                         className="min-h-24 md:min-h-40 shadow-md bg-sky-100 text-center"
                         key={card.title}>
-                        <Link className="
+                        <button className="
                 flex w-full h-full items-center justify-center p-1
                 text-xl md:text-2xl text-sky-700
                 transition ease-in-out delay-50 duration-200
                 hover:bg-sky-200  hover:text-sky-800"
-                            href={{
-                                pathname: `/exercises/${card.title.toLowerCase().replaceAll(' ', '-')}`,
-                                query: { selectedSets: JSON.stringify(cardSetId) }
+                            onClick={() => {
+                                setChosenExerciseTitle(card.title);
+                                setShowExerciseModal(true);
                             }}>
                             {card.title}
-                        </Link>
+                        </button>
                     </li>
                 })}
             </ul>
             <div className='flex justify-end mt-2 sm:mt-4'>
-                <button
+                <Link href={'/#'}
                     className='
               py-2 px-6 sm:max-md:px-4 
               rounded 
@@ -43,8 +46,9 @@ export default function ExerciseBlock({cardSetId}: Props) {
               transition ease-in-out delay-50 duration-200
               hover:bg-sky-500'>
                     View all
-                </button>
+                </Link>
             </div>
+            {showExerciseModal && <ExerciseModalBlock setIsShowExerciseModal={setShowExerciseModal} sets={sets}>{chosenExersiceTitle!}</ExerciseModalBlock>}
         </>
     );
 }

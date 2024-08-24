@@ -24,7 +24,7 @@ export default function ExerciseModalBlock(
     }
 
     useEffect(() => {
-        setSelectedExercise(children?.toString().toLowerCase());
+        setSelectedExercise(children?.toString().toLowerCase().replaceAll(' ', '-'));
     }, []);
 
     return (

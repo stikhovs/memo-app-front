@@ -15,3 +15,14 @@ export type Card = {
     frontSide: string,
     backSide: string
 }
+
+
+export interface QAndA {
+    question: string,
+    answers: Answer[]
+}
+
+export interface Answer {
+    answer: string,
+    correct: boolean
+}

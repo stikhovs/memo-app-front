@@ -65,7 +65,6 @@ export default function LearnPage() {
   }, []); */
 
   const shuffle = () => {
-    console.log("Shuffling...");
     hideAll();
 
     const shuffledArray = [...cardsWithProps];
@@ -112,8 +111,11 @@ export default function LearnPage() {
     <>
 
       <div className="ml-4 flex justify-between mb-3">
-        {/* <h2 className="text-3xl text-sky-700 self-end">{titleOfSet}</h2> */}
-        <h2 className="text-3xl text-sky-700 self-end">Selected: {selectedTitles.join()}</h2>
+        {
+          selectedTitles.length > 1 ?
+            <h2 className="text-3xl text-sky-700 self-end">Selected: {selectedTitles.join()}</h2> :
+            <h2 className="text-3xl text-sky-700 self-end">{selectedTitles[0]}</h2>
+        }
         <div className="flex justify-end">
           <button onClick={shuffle}
             className="
